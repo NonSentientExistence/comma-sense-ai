@@ -3,7 +3,7 @@
 
 ### Structure
 
-Initial structure idea for the project. Keeping the chain and LLM integration isolated from the start allows me to work on it separately without touching routes. This should make it easier for me to progress and avoiding troubleshooting several parts of the projects simultaneously. I.e, is it the route or the LLM integration. 
+Initial structure idea for the project. Keeping the chain and LLM integration isolated from the start allows me to work on it separately without touching routes. This should make it easier for me to progress and avoiding debugging several parts of the projects at the same time. I.e, is it the route or the LLM integration. Separation of concerns, each module has one clear responsibility. 
 
 ```
     comma-sense/
@@ -19,3 +19,6 @@ Initial structure idea for the project. Keeping the chain and LLM integration is
 ├── .gitignore
 └── .env
 ```
+
+Validation could have been its own file but seems like over engeenering for this project. Since the validation is straight forward for now, validation will be kept close to use point.
+
