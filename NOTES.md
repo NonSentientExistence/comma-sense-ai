@@ -22,3 +22,12 @@ Initial structure idea for the project. Keeping the chain and LLM integration is
 
 Validation could have been its own file but seems like over engeenering for this project. Since the validation is straight forward for now, validation will be kept close to use point.
 
+Added model_name without hardcoded value, intent is to allow user to choose model for the response. Initial default will be SmolLM2-135M-Instruct.
+Want to test other models such as SmolLM2-360M-Instruct, Qwen2.5-0.5B-Instruct, Qwen2.5-1.5B-Instruct which are still runnable on CPU. 
+
+### Testing
+
+- 1. First test ensure that question and stats are included in the Promptbuilder
+
+### Idea notes
+- Test other tasks for pupteline such as sentiment-analysis or translation

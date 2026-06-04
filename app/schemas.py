@@ -7,6 +7,7 @@ class PromptBuilderInput(BaseModel):
 # Completed user input prompt
 class PromptBuilderOutput(BaseModel):
     prompt: str
+    question: str
 # Raw output from the AI
 class LLMRunnerOutput(BaseModel):
     raw_response: str

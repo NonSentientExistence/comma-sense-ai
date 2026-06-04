@@ -18,4 +18,20 @@ class PromptBuilder(Runnable[PromptBuilderInput, PromptBuilderOutput]):
         {stats_text}
         Question: {data.question}
         """
-        return PromptBuilderOutput(prompt=prompt)
+        return PromptBuilderOutput(prompt=prompt, question=data.question)
+    
+class LLMRunner:
+    name: str = "llm_runner"
+    model_name: str = "HuggingFaceTB/SmolLM2-135M-Instruct"
+    pipe: object = None
+
+    def model_post_init(self, __context) -> None:
+        print(f"Loading {self.model_name} to memory")
+        self.pipe = pipeline("text-generation", self.model_name)
+        print("{self.model_name} loaded successfully")
+
+    def invoke(self, data: PromptbuilderOutput) -> LLMRunnerOutput:
+        message = [{"role": "user", "content": data.prompt}]
+        output = self.pipe(messages, max_new_tokens=150)
+        raw_response = output[0]["generated_text"][-1]["content"]
+        return LLMRunnerOutput(raw_response=raw_response, question=data.question)
