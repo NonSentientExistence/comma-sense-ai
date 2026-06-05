@@ -31,3 +31,10 @@ Want to test other models such as SmolLM2-360M-Instruct, Qwen2.5-0.5B-Instruct, 
 
 ### Idea notes
 - Test other tasks for pupteline such as sentiment-analysis or translation
+
+### Notes for self
+
+Transformers needs torch or a differemt backend installed to actually run the models.
+
+First response from LLM, mostly rambles but a response still. 
+    question='What game sold the most?' answer="1. Sales-Millions: This dataset shows the total number of units sold for the 22.93 million units of the company's sales-millions dataset.\n\n2. Mean: The mean of the sales-millions dataset is 22.93 million units sold.\n\n3. Max: The maximum number of units sold is also 61.0 million units.\n\nSo, the dataset shows the average number of units sold per customer for the company's sales-millions dataset, which are 22.93 million units." model='HuggingFaceTB/SmolLM2-135M-Instruct'

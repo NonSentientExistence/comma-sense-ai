@@ -1,5 +1,6 @@
 from app.schemas import PromptBuilderInput
 from app.chain.steps import PromptBuilder
+from app.chain.pipeline import oraklet
 
 def test_prompt_builder_has_user_question_and_stats():
     # Hardcoded input for test
@@ -13,3 +14,14 @@ def test_prompt_builder_has_user_question_and_stats():
     assert "score" in result.prompt
     assert "mean" in result.prompt
     assert "92.5" in result.prompt
+
+def test_PromptBuilderInput_gets_answer_from_LLM():
+# Should mock LLMRunner, will fix later
+    test_input = PromptBuilderInput(
+        question="What game sold the most?",
+        stats={"sales_millions": {"mean": 22.93, "max": 61.0}}
+    )
+    result = oraklet.invoke(test_input)
+    # Can be shortened to assert result.answer as both are falsy
+    assert result.answer is not None
+    assert result.answer != ""
