@@ -28,6 +28,7 @@ Want to test other models such as SmolLM2-360M-Instruct, Qwen2.5-0.5B-Instruct, 
 ### Testing
 
 - 1. First test ensure that question and stats are included in the Promptbuilder
+- 2. LLM response includes answer works but is prompting the real model. Changed to mocked LLMRunner
 
 ### Idea notes
 - Test other tasks for pupteline such as sentiment-analysis or translation
