@@ -15,6 +15,8 @@ Det går att rensa upp githistoriken men jag är osäker på om jag hade kunnat 
 En betydligt noggrannare filvalidering hade behövts för att säkerställa att skadliga eller icke valida filer laddas upp mot systemet.
 I sitt nuvarande stadie är den också sårbar för enormt stora filer, en kontroll av filstorlek och en rimlig gräns på CSV storleken hade varit en bra implementering.
 
+Har hunnit med att implementera felhantering av CSV inläsning i pandas. En try catch som returnerar ett tydligt felmeddelande vid en misslyckad inläsning av csv. Vid test med trasiga CSV kastades ohanterade fel som gav 500 och JSON parse fel. 
+
 ### AI säkerhet
 
 Den lokala AIn är extremt sårbar för prompt injecering, som systemet är byggt just nu tar den vilken prompt som helst från användaren och har inga guard rails.
