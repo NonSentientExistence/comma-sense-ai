@@ -41,6 +41,12 @@ take a minute. Subsequent calls are faster.
 | GET | `/data/stats` | Descriptive statistics of the uploaded data |
 | POST | `/ai/ask` | Ask a question about the data |
 
+## Web interface
+
+A simple HTML interface is available at the root URL.
+It lets you upload a CSV , select separator, and then ask questions about
+the data and see the answer without using Swagger.
+
 ## Example usage
 
 1. Start the server and open the Swagger docs at `/docs`
@@ -53,6 +59,12 @@ take a minute. Subsequent calls are faster.
 ```bash
 uv run pytest app/tests/ -v
 ```
+
+## Test data
+
+- `test_data/` — a valid sample CSV to try the app
+- `test_data/invalid_csvs/` — malformed files (empty, ragged, header-only)
+  used to test error handling on `/data/upload`
 
 ## Assumptions
 
