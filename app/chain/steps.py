@@ -13,7 +13,7 @@ class PromptBuilder(Runnable[PromptBuilderInput, PromptBuilderOutput]):
             for stat_name, stat_value in values.items():
                 stats_text += f"    {stat_name}: {stat_value}\n"
         
-        instructions = "Du är en dataanalytiker som svarar på frågor om ett dataset."
+        instructions = "You're an expert in the field that the data represents and you answer accordingly."
 
         prompt = f"""{instructions}
         {stats_text}
