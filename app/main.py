@@ -7,6 +7,8 @@ import numpy as np
 from typing import Annotated
 
 from app import data
+from app.schemas import PromptBuilderInput, UserQuestionInput
+from app.chain.pipeline import oraklet
 
 app = FastAPI()
 
@@ -63,3 +65,18 @@ async def data_stats():
     if data.current_df is None:
         raise HTTPException(status_code=404, detail="No CSV data has been uploaded")
     return data.current_df.describe().replace({np.nan: None}).to_dict()
+
+@app.post("/ai/ask")
+async def ask_question(input: UserQuestionInput):
+    if data.current_df is None:
+        raise HTTPException(status_code=400, detail="No CSV has been uploaded")
+    
+    stats = data.current_df.describe().fillna(0).to_dict()
+
+    chain_input = PromptBuilderInput(
+        question=input.question,
+        stats=stats
+    )
+
+    result = oraklet.invoke(chain_input)
+    return result

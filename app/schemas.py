@@ -17,3 +17,5 @@ class ResponseParserOutput(BaseModel):
     question: str
     answer: str
     model: str
+class UserQuestionInput(BaseModel):
+    question: str

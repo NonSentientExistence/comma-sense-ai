@@ -1,5 +1,5 @@
-from app.schemas import PromptBuilderInput
-from app.chain.steps import PromptBuilder
+from app.schemas import PromptBuilderInput, LLMRunnerOutput
+from app.chain.steps import PromptBuilder, ResponseParser
 from app.chain.pipeline import oraklet
 
 def test_prompt_builder_has_user_question_and_stats():
@@ -17,11 +17,19 @@ def test_prompt_builder_has_user_question_and_stats():
 
 def test_PromptBuilderInput_gets_answer_from_LLM():
 # Should mock LLMRunner, will fix later
-    test_input = PromptBuilderInput(
-        question="What game sold the most?",
-        stats={"sales_millions": {"mean": 22.93, "max": 61.0}}
+    # Mocked response from LLMRunner
+    mock_llm_output = LLMRunnerOutput(
+        raw_response= "    Elden Ring sold the most with 61.0 million units.  ",
+        question = "What game sold the most?"
     )
-    result = oraklet.invoke(test_input)
+
+    # Run the parser step
+    result = ResponseParser().invoke(mock_llm_output)
+
     # Can be shortened to assert result.answer as both are falsy
     assert result.answer is not None
     assert result.answer != ""
+    # Assert that result has the expected response from mock LLM parser. Assert whitespace has been cleaned
+    assert result.answer == "Elden Ring sold the most with 61.0 million units."
+    assert result.question == "What game sold the most?"
+    assert result.model == "HuggingFaceTB/SmolLM2-135M-Instruct"
